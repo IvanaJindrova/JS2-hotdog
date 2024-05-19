@@ -27,10 +27,6 @@ export const toppings = [
         const toppingDiv = document.createElement('div');
         toppingDiv.classList.add('topping');
 
-        if (topping.selected) {
-            toppingDiv.classList.add('topping--selected');
-        }
-
         const nameH3 = document.createElement('h3');
         nameH3.textContent = `Název přísady: ${topping.name}`;
 
@@ -41,6 +37,10 @@ export const toppings = [
         toppingDiv.appendChild(priceP);
 
         toppingsVsechny.appendChild(toppingDiv);
+
+         if (topping.selected) {
+            toppingDiv.classList.add('topping--selected');
+        }
     });
 }
 
