@@ -10,22 +10,32 @@ export const toppings = [
     { name: 'Slanina', price: 10, selected: false },
   ];
 
+export const toggleTopping = (index) => {
+    const topping = toppings[index];
+    topping.selected = !topping.selected;
+}
+
   export const renderToppings = (toppings) => {
     const toppingsVsechny = document.getElementById('toppings-vsechny');
-    const toppingElements = toppingsVsechny.querySelectorAll('.topping');
+    
 
     toppingElements.forEach((toppingElement, index) => {
         toppingElement.addEventListener('click', () => {
-            toppings[index].selected = !toppings[index].selected;
-            renderToppings(toppings);
+            toggleTopping(index)
         });
     });
 
     toppingsVsechny.innerHTML = '';
 
+    const toppingElements = toppingsVsechny.querySelectorAll('.topping');
+
     toppings.forEach(topping => {
         const toppingDiv = document.createElement('div');
         toppingDiv.classList.add('topping');
+
+        if (topping.selected) {
+            toppingDiv.classList.add('topping--selected');
+        }
 
         const nameH3 = document.createElement('h3');
         nameH3.textContent = `Název přísady: ${topping.name}`;
@@ -37,14 +47,5 @@ export const toppings = [
         toppingDiv.appendChild(priceP);
 
         toppingsVsechny.appendChild(toppingDiv);
-
-         if (topping.selected) {
-            toppingDiv.classList.add('topping--selected');
-        }
     });
-}
-
-export const toggleTopping = (index) => {
-    const topping = toppings[index];
-    topping.selected = !topping.selected;
 }
